@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <base href="https://raw.githubusercontent.com/Garrik-Liu/webPractices/master/cases/12.toDoList/toDoList.html">
+            <meta charset="utf-8">
+                <title>Tasks Table</title>
+                <link rel="stylesheet" type="text/css" href="toDoList.css">
+    </head>
+    <body>
+        <body>
+            <!-- Task Enter -->
+            <div id="myDIV" class="header">
+                <h2>Tasks List</h2>
+                <input type="text" id="myInput" placeholder="Enter the task">
+                    <span id="addButton" class="addBtn">add</span>
+                    </div>
+           
+            <!-- Task list -->
+            <ul id="myUL">
+                <li class="checked">Get up<span class="close">×</span></li>
+                <li class="checked">Wash<span class="close">×</span></li>
+                <li>Work<span class="close">×</span></li>
+                <li>Study<span class="close">×</span></li>
+                <li>Lunch<span class="close">×</span></li>
+                <li>Shopping<span class="close">×</span></li>
+            </ul>
+            <script type="text/htmlpreview" src="toDoList.js"></script>
+            <script src="//htmlpreview.github.io/htmlpreview.min.js"></script><script>HTMLPreview.replaceAssets();</script><script src="//query.yahooapis.com/v1/public/yql?q=use%20%22https%3A%2F%2Fraw.githubusercontent.com%2Fyql%2Fyql-tables%2Fmaster%2Fdata%2Fdata.headers.xml%22%20as%20headers%3B%20select%20*%20from%20headers%20where%20url%3D%22https%3A%2F%2Fraw.githubusercontent.com%2FGarrik-Liu%2FwebPractices%2Fmaster%2Fcases%2F12.toDoList%2FtoDoList.css%22&amp;format=json&amp;diagnostics=true&amp;callback=HTMLPreview.loadCSS"></script><style>/*  count padding and border into width*/
+                * {
+                    box-sizing: border-box;
+                }
+            
+            /* Clear margin and padding in List */
+            ul {
+                margin: 0;
+                padding: 0;
+            }
+            
+            /* Set list format */
+            ul li {
+                cursor: pointer;
+                position: relative;
+                padding: 12px 8px 12px 40px;
+                background: #eee;
+                font-size: 18px;
+                transition: 0.2s;
+                user-select: none; 
+            }
+            
+            /* Make odd number li background color different */
+            ul li:nth-child(odd) {
+                background: #f9f9f9;
+            }
+            
+            /* Select hover background color change */
+            ul li:hover {
+                background: #ddd;
+            }
+            
+            /* Make the strikethrough when text has selected */
+            ul li.checked {
+                background: #888;
+                color: #fff;
+                text-decoration: line-through;
+            }
+            
+            /* Make it tick symbol when li has selected*/
+            ul li.checked::before {
+                content: '';
+                position: absolute;
+                border-color: #fff;
+                border-style: solid;
+                border-width: 0 2px 2px 0;
+                top: 10px;
+                left: 16px;
+                transform: rotate(45deg);
+                height: 15px;
+                width: 7px;
+            }
+            
+            /* Close button format */
+            .close {
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding: 12px 16px 12px 16px
+            }
+            
+            .close:hover {
+                background-color: #f44336;
+                color: white;
+            }
+            
+            /* Header format */
+            .header {
+                background-color: #f44336;
+                padding: 30px 40px;
+                color: white;
+                text-align: center;
+            }
+            
+            /* Clear header */
+            .header:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            
+            /* Inputbox format */
+            input {
+                border: none;
+                width: 75%;
+                padding: 10px;
+                float: left;
+                font-size: 16px;
+                outline: 0;
+            }
+            
+            /* Add button format */
+            .addBtn {
+                padding: 9px 10px 8px;
+                width: 25%;
+                background: #d9d9d9;
+                color: #555;
+                float: left;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            
+            .addBtn:hover {
+                background-color: #bbb;
+            }</style><script src="//query.yahooapis.com/v1/public/yql?q=use%20%22https%3A%2F%2Fraw.githubusercontent.com%2Fyql%2Fyql-tables%2Fmaster%2Fdata%2Fdata.headers.xml%22%20as%20headers%3B%20select%20*%20from%20headers%20where%20url%3D%22https%3A%2F%2Fraw.githubusercontent.com%2FGarrik-Liu%2FwebPractices%2Fmaster%2Fcases%2F12.toDoList%2FtoDoList.js%22&amp;format=json&amp;diagnostics=true&amp;callback=HTMLPreview.loadJS"></script>
+			<script> == $0
+                (function() {
+  var i; /*index*/
+  
+  /* Add close btn for all the li */
+  function closeBtn() {
+    var myNodelist = document.getElementsByTagName("li");
+    for (i = 0; i < myNodelist.length; i++) {
+      var span = document.createElement("span");
+      var txt = document.createTextNode("\u00D7");  /* unicode */
+      span.className = "close";
+      span.appendChild(txt);
+      myNodelist[i].appendChild(span);
+    }
+  }
+
+  /* When close btn has clicked, hide all the li */
+  function closeElement() {
+    var close = document.getElementsByClassName("close");
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function() {
+        var div = this.parentElement; /* Close btn setting - li*/
+        div.style.display = "none";
+      }
+    }
+  }
+
+  /* When once click li，add checked，twice is cancel */
+  function ifChecked() {
+    var list = document.querySelector('ul');
+    list.onclick = function(ev) {
+      if (ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('checked');
+      }
+    }
+  }
+
+  /* Click add btn，create a new ul*/
+  function newElement() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("myInput").value;
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+      alert("Enter the task。");
+    } else {
+      document.getElementById("myUL").appendChild(li);
+    }
+    document.getElementById("myInput").value = ""; /* Clear the task */
+  }
+   
+  /* Initialization list*/
+  function initList() {   
+    closeBtn();
+    closeElement();
+    ifChecked();
+  }
+  
+  /* Initialization */
+  function init() {
+    var addButton = document.getElementById("addButton"); 
+    initList();
+
+    /* run as add btn */
+    addButton.onclick = function() {
+      newElement();
+      initList();
+    }
+
+    /* run as press enter */
+    document.onkeydown = function(event) {
+      if(event.keyCode == 13) {
+        newElement();
+        initList();
+      }
+    }
+  }
+
+  init();
+
+})();
+</script>
+</body>
+    </body>
+</html>
